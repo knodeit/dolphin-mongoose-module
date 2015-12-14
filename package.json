@@ -1,0 +1,21 @@
+{
+    "name": "dolphin-mongoose-package",
+    "version": "0.0.1",
+    "preferGlobal": true,
+    "description": "Web server",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/knodeit/dolphin-mongoose-package"
+    },
+    "dependencies": {
+        "glob": "~6.0.1",
+        "mongoose": "^4.2.10",
+        "q": "~1.4.1"
+    },
+    "devDependencies": {
+        "grunt": "~0.4.5",
+        "grunt-contrib-jshint": "~0.11.3",
+        "load-grunt-tasks": "~3.3.0",
+        "time-grunt": "~1.2.2"
+    }
+}
