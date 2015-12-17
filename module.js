@@ -94,7 +94,9 @@ m.run(function (MongooseConfigurationFactory) {
             deferred.resolve();
 
             //event end, notify all modules
-            MongooseConfigurationFactory.events.end.resolve();
+            setTimeout(function () {
+                MongooseConfigurationFactory.events.end.resolve();
+            }, 0);
         });
     });
 

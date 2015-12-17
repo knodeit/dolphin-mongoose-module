@@ -1,6 +1,6 @@
 {
     "name": "dolphin-mongoose-package",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "preferGlobal": true,
     "description": "Web server",
     "repository": {
