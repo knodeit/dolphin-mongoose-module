@@ -1,7 +1,7 @@
 {
     "name": "dolphin-mongoose-package",
-    "version": "0.1.2",
-    "preferGlobal": true,
+    "version": "0.1.3",
+    "preferGlobal": false,
     "description": "Web server",
     "repository": {
         "type": "git",
@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "glob": "~6.0.1",
-        "mongoose": "^4.2.10",
+        "mongoose": "~4.2.10",
         "q": "~1.4.1"
     },
     "devDependencies": {

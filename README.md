@@ -16,7 +16,7 @@ methods:
 * addModule - registration custom module
 
 
-When you call "addModule" the web server will read all routes and middleware in the following folders:
+When you call "addModule" the plugin will read all models and extensions:
 ```
 package_folder
    server
