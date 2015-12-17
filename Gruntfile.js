@@ -1,7 +1,7 @@
 'use strict';
 
 var paths = {
-    js: ['*.js']
+    js: ['*.js', './factories/**/*.js']
 };
 
 module.exports = function (grunt) {

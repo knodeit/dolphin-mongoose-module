@@ -57,6 +57,9 @@ m.configureFactories(function (WebServerConfigurationFactory) {
 });
 
 m.run(function (MongooseConfigurationFactory) {
+    //event start
+    MongooseConfigurationFactory.events.start.resolve();
+
     mongoose.set('debug', MongooseConfigurationFactory.debug);
     MongooseConfigurationFactory.database = mongoose.connect(MongooseConfigurationFactory.db);
 
@@ -89,6 +92,9 @@ m.run(function (MongooseConfigurationFactory) {
 
             //for web server
             deferred.resolve();
+
+            //event end, notify all modules
+            MongooseConfigurationFactory.events.end.resolve();
         });
     });
 
