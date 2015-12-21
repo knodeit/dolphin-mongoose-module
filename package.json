@@ -1,5 +1,5 @@
 {
-    "name": "dolphin-mongoose-package",
+    "name": "dolphin-mongoose-module",
     "version": "0.2.0",
     "preferGlobal": false,
     "description": "Web server",
