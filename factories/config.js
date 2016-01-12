@@ -18,6 +18,7 @@ module.exports = {
         },
         debug: false,
         database: null,
+        defaultPlugins: [__dirname + '/../auditing.js'],
         plugins: [],
         db: 'mongodb://localhost/dolphin',
         dbOptions: {},

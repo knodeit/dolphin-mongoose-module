@@ -75,6 +75,11 @@ m.run(function (MongooseConfigurationFactory) {
         }
 
         Q.all(funcs).then(function () {
+            //apply default plugins
+            MongooseConfigurationFactory.defaultPlugins.forEach(function (file) {
+                mongoose.plugin(require(file));
+            });
+
             //apply global plugins
             MongooseConfigurationFactory.plugins.forEach(function (file) {
                 mongoose.plugin(require(file));
