@@ -1,6 +1,6 @@
 {
     "name": "dolphin-mongoose-module",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "preferGlobal": false,
     "description": "Web server",
     "repository": {
@@ -9,7 +9,7 @@
     },
     "dependencies": {
         "glob": "~6.0.1",
-        "mongoose": "~4.2.10",
+        "mongoose": "~4.3.7",
         "q": "~1.4.1"
     },
     "devDependencies": {
