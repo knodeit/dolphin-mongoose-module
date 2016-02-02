@@ -66,6 +66,11 @@ m.run(function (MongooseConfigurationFactory) {
     mongoose.connection.on('open', function (e) {
         Logger.info('Mongoose connection open to:', MongooseConfigurationFactory.db);
 
+        //register default plugins
+        MongooseConfigurationFactory.defaultPlugins.forEach(function (file) {
+            mongoose.plugin(require(file));
+        });
+
         //load models
         var funcs = [];
         var modules = MongooseConfigurationFactory.getModules();
@@ -75,11 +80,6 @@ m.run(function (MongooseConfigurationFactory) {
         }
 
         Q.all(funcs).then(function () {
-            //apply default plugins
-            MongooseConfigurationFactory.defaultPlugins.forEach(function (file) {
-                mongoose.plugin(require(file));
-            });
-
             //apply global plugins
             MongooseConfigurationFactory.plugins.forEach(function (file) {
                 mongoose.plugin(require(file));
