@@ -3,6 +3,7 @@
  */
 'use strict';
 var Q = require('q');
+var _ = require('lodash');
 var modules = [];
 var startEvent = Q.defer();
 var endEvent = Q.defer();
@@ -26,7 +27,7 @@ module.exports = {
             modules.push(module);
         },
         getModules: function () {
-            return modules;
+            return _.uniq(modules);
         }
     }
 };
