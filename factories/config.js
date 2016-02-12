@@ -19,7 +19,7 @@ module.exports = {
         },
         debug: false,
         database: null,
-        defaultPlugins: [__dirname + '/../auditing.js'],
+        defaultPlugins: [__dirname + '/../auditing.js', __dirname + '/../paginate.js'],
         plugins: [],
         db: 'mongodb://localhost/dolphin',
         dbOptions: {},
