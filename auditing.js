@@ -8,9 +8,9 @@ module.exports = function (schema, options) {
     schema.add({
         auditing: {
             createdAt: {type: Date, default: Date.now},
-            createdBy: {type: Schema.ObjectId, ref: 'User'},
+            createdBy: {type: Schema.ObjectId, ref: 'KNUser'},
             lastUpdateAt: {type: Date, default: Date.now},
-            lastUpdateBy: {type: Schema.ObjectId, ref: 'User'},
+            lastUpdateBy: {type: Schema.ObjectId, ref: 'KNUser'},
             deleted: {type: Boolean, default: false},
             canbedeleted: {type: Boolean, default: true}
         }
