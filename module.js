@@ -32,6 +32,7 @@ function loadModels(module) {
         }
         deferred.resolve();
     });
+    return deferred.promise;
 }
 
 function loadPlugins(module) {
