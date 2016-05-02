@@ -88,12 +88,12 @@ m.run(function (MongooseConfigurationFactory) {
 
             //apply dynamic plugins
             plugins.forEach(function (obj) {
-                if (!MongooseConfigurationFactory.database.modelSchemas[obj.model]) {
+                if (!mongoose.modelSchemas[obj.model]) {
                     return Logger.warn('Model', obj.model, 'do not exists for the extension');
                 }
 
                 delete mongoose.connection.models[obj.model];
-                mongoose.model(obj.model, MongooseConfigurationFactory.database.modelSchemas[obj.model].plugin(obj.plugin));
+                mongoose.model(obj.model, mongoose.modelSchemas[obj.model].plugin(obj.plugin));
             });
 
             //for web server
