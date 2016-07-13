@@ -5,7 +5,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 function getZoneOffset() {
-    return new Date().getTimezoneOffset();
+    return -1 * new Date().getTimezoneOffset();
 }
 
 module.exports = function (schema, options) {
