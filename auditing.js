@@ -4,6 +4,10 @@ var Q = require('q');
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+function getZoneOffset() {
+    return new Date().getTimezoneOffset();
+}
+
 module.exports = function (schema, options) {
     schema.add({
         auditing: {
@@ -12,7 +16,9 @@ module.exports = function (schema, options) {
             lastUpdateAt: {type: Date, default: Date.now},
             lastUpdateBy: {type: Schema.ObjectId, ref: 'KNUser'},
             deleted: {type: Boolean, default: false},
-            canbedeleted: {type: Boolean, default: true}
+            canbedeleted: {type: Boolean, default: true},
+            creationZoneOffset: {type: Number, default: getZoneOffset},
+            updateZoneOffset: {type: Number, default: getZoneOffset}
         }
     });
 
@@ -33,12 +39,23 @@ module.exports = function (schema, options) {
 
         if (this.isNew) {
             this.createdAt = new Date().toISOString();
-            if (params && params.user && params.user._id) {
-                this.auditing.createdBy = params.user._id;
+            if (params) {
+                if (params.user && params.user._id) {
+                    this.auditing.createdBy = params.user._id;
+                }
+
+                if (params.creationZoneOffset) {
+                    this.auditing.creationZoneOffset = params.creationZoneOffset;
+                }
             }
         }
-        if (params && params.user && params.user._id) {
-            this.auditing.lastUpdateBy = params.user._id;
+        if (params) {
+            if (params.user && params.user._id) {
+                this.auditing.lastUpdateBy = params.user._id;
+            }
+            if (params.updateZoneOffset || params.creationZoneOffset) {
+                this.auditing.updateZoneOffset = params.updateZoneOffset || params.creationZoneOffset;
+            }
         }
 
         this.auditing.lastUpdateAt = new Date().toISOString();
