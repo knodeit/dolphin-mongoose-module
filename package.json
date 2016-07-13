@@ -1,6 +1,6 @@
 {
     "name": "dolphin-mongoose-module",
-    "version": "0.3.5",
+    "version": "0.3.6",
     "preferGlobal": false,
     "description": "Web server",
     "repository": {
@@ -11,7 +11,8 @@
         "glob": "~6.0.1",
         "mongoose": "~4.3.7",
         "q": "~1.4.1",
-        "kerberos": "~0.0.18"
+        "kerberos": "~0.0.18",
+        "moment-timezone": "~0.5.4"
     },
     "devDependencies": {
         "grunt": "~0.4.5",

@@ -2,6 +2,7 @@
 
 var Q = require('q');
 var mongoose = require('mongoose');
+var moment = require('moment-timezone');
 var Schema = mongoose.Schema;
 
 function getZoneOffset() {
@@ -37,8 +38,15 @@ module.exports = function (schema, options) {
             }
         }
 
+        var offset = getZoneOffset();
+        if (params && params.user && params.user.timezone) {
+            offset = moment().tz(params.user.timezone).utcOffset();
+        }
+
         if (this.isNew) {
             this.createdAt = new Date().toISOString();
+            this.auditing.creationZoneOffset = offset;
+
             if (params) {
                 if (params.user && params.user._id) {
                     this.auditing.createdBy = params.user._id;
@@ -49,6 +57,11 @@ module.exports = function (schema, options) {
                 }
             }
         }
+
+        //always
+        this.auditing.updateZoneOffset = offset;
+        this.auditing.lastUpdateAt = new Date().toISOString();
+
         if (params) {
             if (params.user && params.user._id) {
                 this.auditing.lastUpdateBy = params.user._id;
@@ -57,8 +70,6 @@ module.exports = function (schema, options) {
                 this.auditing.updateZoneOffset = params.updateZoneOffset || params.creationZoneOffset;
             }
         }
-
-        this.auditing.lastUpdateAt = new Date().toISOString();
         next(callback);
     });
 
