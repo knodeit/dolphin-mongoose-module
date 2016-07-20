@@ -62,7 +62,7 @@ m.run(function (MongooseConfigurationFactory) {
     MongooseConfigurationFactory.events._startEvent.resolve();
 
     mongoose.set('debug', MongooseConfigurationFactory.debug);
-    MongooseConfigurationFactory.database = mongoose.connect(MongooseConfigurationFactory.db);
+    MongooseConfigurationFactory.database = mongoose.connect(MongooseConfigurationFactory.db, {server: {reconnectTries: Number.MAX_VALUE}});
 
     mongoose.connection.on('open', function (e) {
         Logger.info('Mongoose connection open to:', MongooseConfigurationFactory.db);
