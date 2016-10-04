@@ -62,7 +62,16 @@ m.run(function (MongooseConfigurationFactory) {
     MongooseConfigurationFactory.events._startEvent.resolve();
 
     mongoose.set('debug', MongooseConfigurationFactory.debug);
-    MongooseConfigurationFactory.database = mongoose.connect(MongooseConfigurationFactory.db, {server: {reconnectTries: Number.MAX_VALUE}});
+
+    var mongooseOption = {
+        server: {
+            reconnectTries: Number.MAX_VALUE
+        }
+    };
+    if (MongooseConfigurationFactory.db && MongooseConfigurationFactory.db.indexOf(',') > -1) {
+        mongooseOption.mongos = true;
+    }
+    MongooseConfigurationFactory.database = mongoose.connect(MongooseConfigurationFactory.db, mongooseOption);
 
     mongoose.connection.on('open', function (e) {
         Logger.info('Mongoose connection open to:', MongooseConfigurationFactory.db);
